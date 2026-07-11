@@ -55,6 +55,7 @@ export default function App() {
     const { data, error } = await supabase.auth.signUp({
       email: email.trim(),
       password,
+      options: { emailRedirectTo: window.location.origin + import.meta.env.BASE_URL },
     });
     setSubmitting(false);
     if (error) return setAuthError(error.message.includes('already registered') ? '这个邮箱已经注册过了，试试登录' : error.message);
